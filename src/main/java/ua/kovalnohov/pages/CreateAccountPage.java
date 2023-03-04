@@ -26,7 +26,6 @@ public class CreateAccountPage extends BasePage {
     public CreateAccountPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
     public CreateAccountPage typeFirstName(String name) {
@@ -55,8 +54,10 @@ public class CreateAccountPage extends BasePage {
         return this;
     }
 
-    public void clickCreateAccountButton() {
+    public MyAccountPage clickCreateAccountButton() {
         clickOnElement(createAccountButton);
+        waitUntilElementNotVisible(createAccountButton);
+        return new MyAccountPage(driver);
     }
 
     public CreateAccountPage checkIsRedorectToCreateAccountPage() {

@@ -7,7 +7,7 @@ public class LoginTestCase extends TestRunner {
 
     @Test
 
-    public void  testThatUserIsAbleToLogin(){
-
+    public void testThatUserIsAbleToLogin() {
+        homePage.clickSignIn();
     }
 }
