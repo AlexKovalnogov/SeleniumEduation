@@ -10,7 +10,7 @@ public class CreateNewAccountTests extends TestRunner {
 
     @Test
     public void checkThatUserIsAbleToCreateNewAccount() {
-        homePage.clickCreateAccount()
+        homePage.openCreateAccountPage()
                 .checkIsRedorectToCreateAccountPage()
                 .typeFirstName(NAME)
                 .typeLastName(LASTNAME)

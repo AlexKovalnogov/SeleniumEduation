@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class CreateAccountPage extends BasePage {
     private WebDriver driver;
@@ -54,10 +53,10 @@ public class CreateAccountPage extends BasePage {
         return this;
     }
 
-    public MyAccountPage clickCreateAccountButton() {
+    public CustomerAccountPage clickCreateAccountButton() {
         clickOnElement(createAccountButton);
         waitUntilElementNotVisible(createAccountButton);
-        return new MyAccountPage(driver);
+        return new CustomerAccountPage(driver);
     }
 
     public CreateAccountPage checkIsRedorectToCreateAccountPage() {

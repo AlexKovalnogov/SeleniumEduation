@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -62,8 +64,25 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
-    protected  void waitForLoad(WebDriver driver) {
+    protected void waitUntilElementVisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
 
+
+    protected  void waitForLoad(WebDriver driver) {
+//TODO need implement
+    }
+
+    protected void moveToElement(WebElement element){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+        actions.perform();
+    }
+    protected void click(){
+        Actions actions = new Actions(driver);
+        actions.click();
+        actions.perform();
     }
 
     private String getElementName(WebElement element) {
