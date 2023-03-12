@@ -4,12 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ua.kovalnohov.pages.BasePage;
-import ua.kovalnohov.pages.ItemsPage;
+import ua.kovalnohov.pages.ItemsCardPage;
 
 public class MenSubMenu extends BasePage implements SubMenu {
 
     private WebDriver driver;
-    @FindBy(xpath = " (.//span[text()='Jackets'])[2]")
+    @FindBy(xpath = "(.//span[text()='Jackets'])[2]")
     private WebElement jacketItem;
 
     public MenSubMenu(WebDriver driver) {
@@ -29,8 +29,8 @@ public class MenSubMenu extends BasePage implements SubMenu {
     }
 
     @Override
-    public ItemsPage openItemsPage() {
+    public ItemsCardPage openItemsPage() {
         click();
-        return new ItemsPage(driver);
+        return new ItemsCardPage(driver);
     }
 }

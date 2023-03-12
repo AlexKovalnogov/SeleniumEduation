@@ -3,6 +3,7 @@ package createNewAccount;
 import Executor.TestRunner;
 import org.junit.After;
 import org.junit.Test;
+import ua.kovalnohov.libs.TestData;
 
 public class CreateNewAccountTests extends TestRunner {
     private static final String NAME = "Name";
@@ -10,7 +11,8 @@ public class CreateNewAccountTests extends TestRunner {
 
     @Test
     public void checkThatUserIsAbleToCreateNewAccount() {
-        homePage.openCreateAccountPage()
+        homePage.getHeader()
+                .openCreateAccountPage()
                 .checkIsRedorectToCreateAccountPage()
                 .typeFirstName(NAME)
                 .typeLastName(LASTNAME)

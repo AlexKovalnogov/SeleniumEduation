@@ -8,8 +8,9 @@ public class LoginTestCase extends TestRunner {
 
     @Test
     public void testThatUserIsAbleToLogin() {
-        homePage.openCustomerLoginPage()
+        homePage.getHeader()
+                .openCustomerLoginPage()
                 .signInWithCreds(TestData.LOGIN, TestData.PASSWORD);
-
+             //  capcha used for login
     }
 }

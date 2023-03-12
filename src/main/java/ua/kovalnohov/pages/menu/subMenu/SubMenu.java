@@ -1,7 +1,8 @@
 package ua.kovalnohov.pages.menu.subMenu;
 
-import ua.kovalnohov.pages.ItemsPage;
-import ua.kovalnohov.pages.menu.Menu;
+import ua.kovalnohov.pages.ItemsCardPage;
+import ua.kovalnohov.pages.header.Header;
+
 
 public interface SubMenu {
     enum SubMenuItems {
@@ -12,5 +13,7 @@ public interface SubMenu {
 
     public SubMenu selectMenuItem(SubMenuItems item);
 
-    public ItemsPage openItemsPage();
+    public ItemsCardPage openItemsPage();
+
+    public Header getHeader();
 }
