@@ -19,29 +19,51 @@ public class ActionsWithElement {
 
     public ActionsWithElement(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
+        PageFactory.initElements(driver, this);
         waitForPageLoad();
     }
 
 
     protected WebElement getWebElement(String xpath) {
-        return driver.findElement(By.xpath(xpath));
+        WebElement element = null;
+        try {
+            By elementBy = By.xpath(xpath);
+            //  wait15.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
+            element = driver.findElement(elementBy);
+        } catch (Exception e) {
+
+        }
+
+        return element;
     }
 
     protected WebElement getWebElement(By by) {
-        return driver.findElement(by);
+        WebElement element = null;
+        try {
+            element = driver.findElement(by);
+        } catch (Exception e) {
+
+        }
+        return element;
+    }
+
+    protected void refreshPage() {
+        driver.navigate().refresh();
     }
 
     protected void typeTextToElements(String text, WebElement element) {
         try {
             element.clear();
             element.sendKeys(text);
+            log.info("Text " + text + " was typed to " + getElementName(element));
         } catch (Exception e) {
             throw new AssertionError(e);
         }
+
     }
 
     protected String getText(WebElement element) {
+        log.info("Get text " + getElementName(element));
         try {
             return element.getText();
         } catch (Exception e) {
@@ -52,6 +74,7 @@ public class ActionsWithElement {
     protected void clickOnElement(WebElement element) {
         try {
             element.click();
+            log.info("Click on element " + getElementName(element));
         } catch (Exception e) {
 
         }
@@ -86,6 +109,7 @@ public class ActionsWithElement {
 
 
     protected void waitForPageLoad() {
+        log.info("Wait until page loading ");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String state = js.executeScript("return document.readyState").toString();
         while (!state.equals("complete")) {
@@ -114,11 +138,15 @@ public class ActionsWithElement {
     }
 
     protected void moveToElement(WebElement element) {
+        log.info("Move to element:  " + getElementName(element));
         //waitUntilElementVisible(element);
-        waitUntilElementClickable(element);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element);
-        actions.perform();
+        //waitUntilElementClickable(element);
+        if(isElementDisplayed(element)){
+            Actions actions = new Actions(driver);
+            actions.moveToElement(element);
+            actions.perform();
+        }
+
     }
 
     protected void click() {

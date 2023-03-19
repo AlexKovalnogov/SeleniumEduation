@@ -11,6 +11,6 @@ public class LoginTestCase extends TestRunner {
         homePage.getHeader()
                 .openCustomerLoginPage()
                 .signInWithCreds(TestData.LOGIN, TestData.PASSWORD);
-             //  capcha used for login
+             //  can't implement as capcha used for login
     }
 }
