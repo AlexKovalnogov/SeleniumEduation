@@ -128,12 +128,4 @@ return  result;
 
 
     }
-
-
-    public static void main(String[] args) {
-        String s="https://magento.softwaretestingboard.com/pub/media/captcha/base/73fd968dd07ac034820b7c12eeb14b3a.png";
-
-
-        ImageUtils.getCapchaValue(s);
-    }
 }

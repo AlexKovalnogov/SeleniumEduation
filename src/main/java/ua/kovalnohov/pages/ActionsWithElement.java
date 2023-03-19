@@ -141,11 +141,15 @@ public class ActionsWithElement {
         log.info("Move to element:  " + getElementName(element));
         //waitUntilElementVisible(element);
         //waitUntilElementClickable(element);
-        if(isElementDisplayed(element)){
-            Actions actions = new Actions(driver);
-            actions.moveToElement(element);
-            actions.perform();
+        try {
+            if (isElementDisplayed(element)) {
+                Actions actions = new Actions(driver);
+                actions.moveToElement(element);
+                actions.perform();
+            }
+        } catch (Exception e) {
         }
+
 
     }
 
