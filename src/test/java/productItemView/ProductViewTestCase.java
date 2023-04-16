@@ -15,6 +15,5 @@ public class ProductViewTestCase extends TestRunner {
                 openItemsPage()
                 .changeProductView(ItemsCardPage.ProductsView.LIST)
                 .checkItemsView(ItemsCardPage.ProductsView.LIST);
-
     }
 }

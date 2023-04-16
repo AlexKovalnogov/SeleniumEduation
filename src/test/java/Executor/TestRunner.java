@@ -20,6 +20,7 @@ public class TestRunner extends Vars {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(ops);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         driver.get("https://magento.softwaretestingboard.com/");
         homePage = new HomePage(driver);
     }

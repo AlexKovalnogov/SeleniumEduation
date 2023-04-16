@@ -1,13 +1,13 @@
 package ua.kovalnohov.pages;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public class ActionsWithElement {
     private WebDriver driver;
-    protected Logger log = Logger.getLogger(ActionsWithElement.class);
+    protected Logger log = Logger.getLogger(getClass());
 
     public ActionsWithElement(WebDriver driver) {
         this.driver = driver;
@@ -28,12 +28,10 @@ public class ActionsWithElement {
         WebElement element = null;
         try {
             By elementBy = By.xpath(xpath);
-            //  wait15.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
             element = driver.findElement(elementBy);
         } catch (Exception e) {
-
+            printErrorAboutElementAndStopTest(e);
         }
-
         return element;
     }
 
@@ -42,7 +40,7 @@ public class ActionsWithElement {
         try {
             element = driver.findElement(by);
         } catch (Exception e) {
-
+            printErrorAboutElementAndStopTest(e);
         }
         return element;
     }
@@ -76,7 +74,7 @@ public class ActionsWithElement {
             element.click();
             log.info("Click on element " + getElementName(element));
         } catch (Exception e) {
-
+            printErrorAboutElementAndStopTest(e);
         }
     }
 
@@ -116,7 +114,7 @@ public class ActionsWithElement {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-
+                printErrorAboutElementAndStopTest(e);
             }
         }
     }
@@ -130,17 +128,8 @@ public class ActionsWithElement {
         }
     }
 
-    protected void moveToElement(By by) {
-        WebElement element = getWebElement(by);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element);
-        actions.perform();
-    }
-
     protected void moveToElement(WebElement element) {
         log.info("Move to element:  " + getElementName(element));
-        //waitUntilElementVisible(element);
-        //waitUntilElementClickable(element);
         try {
             if (isElementDisplayed(element)) {
                 Actions actions = new Actions(driver);
@@ -155,6 +144,7 @@ public class ActionsWithElement {
 
     protected void click() {
         Actions actions = new Actions(driver);
+        log.info("Click on current position");
         actions.click();
         actions.perform();
     }
@@ -165,5 +155,11 @@ public class ActionsWithElement {
         } catch (Exception e) {
             return "";
         }
+    }
+
+
+    protected void printErrorAboutElementAndStopTest(Exception e) {
+        log.error("Can not work with element " + e.getMessage());
+        Assert.fail("Can not work with element  " + e.getMessage());
     }
 }

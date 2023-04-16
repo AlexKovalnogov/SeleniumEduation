@@ -7,9 +7,6 @@ import ua.kovalnohov.pages.menu.subMenu.SubMenu;
 
 public class SearchInGoods extends TestRunner {
 
-
-
-
     @Test
     public void testThatUserIsAbleToSearch () {
         homePage.getMenu()
